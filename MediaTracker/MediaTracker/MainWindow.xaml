@@ -1,0 +1,11 @@
+﻿<Window x:Class="MediaTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel>
+            <Button Content="Add Movie" Command="{Binding AddMovieCommand}"/>
+            <Button Content="Add Video Game" Command="{Binding AddVideoGameCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>
