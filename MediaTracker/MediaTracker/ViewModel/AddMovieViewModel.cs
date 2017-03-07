@@ -43,7 +43,7 @@ namespace MediaTracker.ViewModel
                 if (mMovies != value)
                 {
                     mMovies = value;
-                    OnPropertyChanged("Movies");
+                    OnPropertyChanged("MovieList");
                 }
             }
 

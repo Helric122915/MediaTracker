@@ -1,9 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MediaTracker.Helper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaTracker.Classes
 {
@@ -15,8 +11,23 @@ namespace MediaTracker.Classes
         public string Director;
         public string Starring;
 
-        public override void writeXML()
+        public Movie() { }
+
+        public Movie(BoxOfficeMovie movie)
         {
+            Title = movie.Title;
+            PersonalRating = 0;
+            DateAdded = DateTime.Now;
+            Genre = movie.Genre;
+            ReleaseDate = new DateTime();
+            TimesUsed = 0;
+            DateLastUsed = DateTime.Now;
+            MetacriticScore = 0;
+            MPAA = movie.Mpaa;
+            Studio = movie.Studio;
+            IMDB = movie.Imdb;
+            Director = movie.Director;
+            Starring = movie.Starring;
         }
     }
 }

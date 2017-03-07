@@ -1,22 +1,18 @@
-﻿using MediaTracker.View;
+﻿using MediaTracker.Classes;
+using MediaTracker.View;
 using MediaTracker.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaTracker.Helper
 {
     public interface IWindowFactory
     {
-        BoxOfficeMovie CreateMovieWindow(Log log);
-        IGDBVideoGame CreateVideoGameWindow(Log log);
+        Movie CreateMovieWindow(Log log);
+        VideoGame CreateVideoGameWindow(Log log);
     }
 
     public class ProductionWindowFactory : IWindowFactory
     {
-        public BoxOfficeMovie CreateMovieWindow(Log log)
+        public Movie CreateMovieWindow(Log log)
         {
             AddMovieViewModel viewModel = new AddMovieViewModel(log);
 
@@ -25,12 +21,12 @@ namespace MediaTracker.Helper
             bool ReturnResult = (bool)window.ShowDialog();
 
             if (ReturnResult)
-                return viewModel.SelectedMovie;
+                return new Movie(viewModel.SelectedMovie);
             else
                 return null;
         }
 
-        public IGDBVideoGame CreateVideoGameWindow(Log log)
+        public VideoGame CreateVideoGameWindow(Log log)
         {
             AddVideoGameViewModel viewModel = new AddVideoGameViewModel(log);
 
@@ -39,7 +35,7 @@ namespace MediaTracker.Helper
             bool ReturnResult = (bool)window.ShowDialog();
 
             if (ReturnResult)
-                return viewModel.SelectedVideoGame;
+                return new VideoGame(viewModel.SelectedVideoGame);
             else
                 return null;
         }

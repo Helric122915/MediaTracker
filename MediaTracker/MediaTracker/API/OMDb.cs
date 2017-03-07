@@ -14,7 +14,7 @@ namespace MediaTracker.API
     {
         string website = "http://www.omdbapi.com/?t=";
 
-        public async Task<Movie> GetRequest(string Title, string Year, Plot Plot, Response Response)
+        public async Task<OMDbMovie> GetRequest(string Title, string Year, Plot Plot, Response Response)
         {
             string result = "Error Get Request Failed";
             HttpClient client = new HttpClient();
@@ -32,7 +32,7 @@ namespace MediaTracker.API
             using (StreamReader reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
                 result = await reader.ReadToEndAsync();
 
-            Movie movie = new JavaScriptSerializer().Deserialize<Movie>(result);
+            OMDbMovie movie = new JavaScriptSerializer().Deserialize<OMDbMovie>(result);
 
             return movie;
         }

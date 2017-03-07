@@ -12,7 +12,7 @@ namespace MediaTracker.Helper
         [JsonProperty("id")]
         public int Id { get; set; }
         [JsonProperty("imdb")]
-        public object Imdb { get; set; }
+        public string Imdb { get; set; }
         [JsonProperty("title")]
         public string Title { get; set; }
         [JsonProperty("studio")]

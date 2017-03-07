@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediaTracker.Helper
 {
-    public class Movie
+    public class OMDbMovie
     {
         #region Properties
         private string mSearch = "Enter Movie Title";

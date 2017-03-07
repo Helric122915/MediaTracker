@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MovieSchema"
+    targetNamespace="http://tempuri.org/XMLSchema1.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Movie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Title" type="xs:string"/>
+        <xs:element name="PersonalRating" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="DateAdded" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Genre" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="ReleaseDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="TimesUsed" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="DateLastUsed" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="MetacriticScore" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="MPAA" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Studio" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IMDB" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Director" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Starring" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="MovieList">
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="Movie" minOccurs="1"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

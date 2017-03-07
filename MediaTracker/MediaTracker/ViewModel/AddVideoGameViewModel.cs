@@ -43,7 +43,7 @@ namespace MediaTracker.ViewModel
                 if (mVideoGames != value)
                 {
                     mVideoGames = value;
-                    OnPropertyChanged("VideoGames");
+                    OnPropertyChanged("VideoGameList");
                 }
             }
 
