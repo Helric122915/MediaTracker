@@ -17,15 +17,15 @@ namespace MediaTracker.Classes
             Title = game.name;
             PersonalRating = 0;
             DateAdded = DateTime.Now;
-            Genre = game.genres.ToString();
+            Genre = string.Join(",", game.genres.ToArray());
             ReleaseDate = new DateTime();
             TimesUsed = 0;
             DateLastUsed = DateTime.Now;
             MetacriticScore = 0;
-            ESRB = (ESRB)game.esrb.rating;
+            ESRB = (game.esrb != null ? (ESRB)game.esrb.rating : ESRB.None);
             Platform = "";
-            Publisher = game.publishers.ToString();
-            Studio = game.developers.ToString();
+            Publisher = string.Join(",", game.publishers.ToArray());
+            Studio = string.Join(",", game.developers.ToArray());
         }
     }
 }

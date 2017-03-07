@@ -116,7 +116,7 @@ namespace MediaTracker.ViewModel
             // Sweep through each list of media and write all of the files to xml for persistant storage.
             WriteXML writeXML = new WriteXML();
             writeXML.WriteMovie(MovieList, Directory.GetCurrentDirectory() + "/MovieList.xml");
-
+            writeXML.WriteVideoGame(VideoGameList, Directory.GetCurrentDirectory() + "/VideoGameList.xml");
             // Save inportant values
             Environment.Exit(0);
         }
