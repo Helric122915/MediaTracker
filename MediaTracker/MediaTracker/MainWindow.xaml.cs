@@ -17,7 +17,7 @@ namespace MediaTracker
             InitializeComponent();
 
             mainViewModel = new ViewModel.ViewModel(new ProductionWindowFactory());
-            this.DataContext = mainViewModel;
+            DataContext = mainViewModel;
 
             Closing += mainViewModel.OnWindowClosing;
 

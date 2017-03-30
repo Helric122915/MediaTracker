@@ -9,13 +9,12 @@ namespace MediaTracker.Classes
 {
     public abstract class Media
     {
-        public string Title;
-        public ushort PersonalRating;
-        public DateTime DateAdded;
-        public string Genre; // Possibly split to each individual class and create enum?
-        public DateTime ReleaseDate;
-        public ushort TimesUsed;
-        public DateTime DateLastUsed;
-        public ushort MetacriticScore; // how to get metacritic score? Might not be able to 
+        public string Title { get; set; }
+        public ushort PersonalRating { get; set; }
+        public DateTime DateAdded { get; set; }
+        public string Genre { get; set; } // Possibly split to each individual class and create enum?
+        public DateTime ReleaseDate { get; set; }
+        public ushort TimesUsed { get; set; }
+        public DateTime DateLastUsed { get; set; }
     }
 }

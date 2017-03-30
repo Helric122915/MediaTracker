@@ -40,11 +40,10 @@ namespace MediaTracker.Helper
                 textReader.ReadToNextSibling("DateLastUsed");
                 tempMovie.DateLastUsed = DateTime.Parse(textReader.GetAttribute("name"));
 
-                textReader.ReadToNextSibling("MetacriticScore");
-                tempMovie.MetacriticScore = ushort.Parse(textReader.GetAttribute("name"));
-
                 textReader.ReadToNextSibling("MPAA");
-                tempMovie.MPAA = textReader.GetAttribute("name");
+                MPAA temp = MPAA.None;
+                Enum.TryParse<MPAA>(textReader.GetAttribute("name"), out temp);
+                tempMovie.MPAA = temp;
 
                 textReader.ReadToNextSibling("Studio");
                 tempMovie.Studio = textReader.GetAttribute("name");
@@ -71,7 +70,7 @@ namespace MediaTracker.Helper
             textReader.WhitespaceHandling = WhitespaceHandling.None;
             List<VideoGame> videoGameList = new List<VideoGame>();
 
-            textReader.ReadToDescendant("MovieList");
+            textReader.ReadToDescendant("VideoGameList");
 
             while (textReader.ReadToFollowing("Movie"))
             {
@@ -98,14 +97,8 @@ namespace MediaTracker.Helper
                 textReader.ReadToNextSibling("DateLastUsed");
                 tempVideoGame.DateLastUsed = DateTime.Parse(textReader.GetAttribute("name"));
 
-                textReader.ReadToNextSibling("MetacriticScore");
-                tempVideoGame.MetacriticScore = ushort.Parse(textReader.GetAttribute("name"));
-
                 textReader.ReadToNextSibling("ESRB");
                 tempVideoGame.ESRB = (ESRB)int.Parse(textReader.GetAttribute("name"));
-
-                textReader.ReadToNextSibling("Platform");
-                tempVideoGame.Platform = textReader.GetAttribute("name");
 
                 textReader.ReadToNextSibling("Publisher");
                 tempVideoGame.Publisher = textReader.GetAttribute("name");

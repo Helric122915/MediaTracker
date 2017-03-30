@@ -1,16 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using MediaTracker.Helper;
+using System;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace MediaTracker.Converter
 {
-    [ValueConversion(typeof(string), typeof(double))]
-    public class EmptyStringToHeightConverter : BaseConverter, IValueConverter
+    [ValueConversion(typeof(ESRB), typeof(Visibility))]
+    public class EnumToVisibilityConverter : BaseConverter, IValueConverter
     {
         /// <summary>
-        /// If the string is empty NaN (auto) will be returned. Otherwise, 0 will be returned.
+        /// If the ESRB rating is None Hidden will be returned. Otherwise, Visible will be returned.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>
@@ -19,9 +18,9 @@ namespace MediaTracker.Converter
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if ((string)value != "")
-                return double.NaN;
-            return 0;
+            if ((ESRB)value != ESRB.None)
+                return Visibility.Visible;
+            return Visibility.Hidden;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

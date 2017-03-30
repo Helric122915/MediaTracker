@@ -62,12 +62,8 @@ namespace MediaTracker.Helper
                 textWriter.WriteAttributeString("name", movie.DateLastUsed.ToString());
                 textWriter.WriteEndElement();
 
-                textWriter.WriteStartElement("MetacriticScore");
-                textWriter.WriteAttributeString("name", movie.MetacriticScore.ToString());
-                textWriter.WriteEndElement();
-
                 textWriter.WriteStartElement("MPAA");
-                textWriter.WriteAttributeString("name", movie.MPAA);
+                textWriter.WriteAttributeString("name", movie.MPAA.ToString());
                 textWriter.WriteEndElement();
 
                 textWriter.WriteStartElement("Studio");
@@ -143,16 +139,8 @@ namespace MediaTracker.Helper
                 textWriter.WriteAttributeString("name", game.DateLastUsed.ToString());
                 textWriter.WriteEndElement();
 
-                textWriter.WriteStartElement("MetacriticScore");
-                textWriter.WriteAttributeString("name", game.MetacriticScore.ToString());
-                textWriter.WriteEndElement();
-
                 textWriter.WriteStartElement("ESRB");
-                textWriter.WriteAttributeString("name", game.ESRB.ToString());
-                textWriter.WriteEndElement();
-
-                textWriter.WriteStartElement("Platform");
-                textWriter.WriteAttributeString("name", game.Platform);
+                textWriter.WriteAttributeString("name", ((int)game.ESRB).ToString());
                 textWriter.WriteEndElement();
 
                 textWriter.WriteStartElement("Publisher");

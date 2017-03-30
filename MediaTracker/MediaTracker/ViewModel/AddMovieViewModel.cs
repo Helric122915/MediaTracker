@@ -1,15 +1,8 @@
 ﻿using MediaTracker.API;
+using MediaTracker.Classes;
 using MediaTracker.Helper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Web;
-using System.Web.Script.Serialization;
-using unirest_net.http;
-using System.Windows.Input;
 using System.Windows;
 
 namespace MediaTracker.ViewModel
@@ -46,7 +39,6 @@ namespace MediaTracker.ViewModel
                     OnPropertyChanged("Movies");
                 }
             }
-
         }
 
         private BoxOfficeMovie mSelectedMovie;
@@ -67,6 +59,24 @@ namespace MediaTracker.ViewModel
                 }
             }
         }
+
+        private Movie mReturnedMovie;
+        public Movie ReturnedMovie
+        {
+            get
+            {
+                if (mReturnedMovie == null)
+                    return null;
+                return mReturnedMovie;
+            }
+            set
+            {
+                if (mReturnedMovie != value)
+                {
+                    mReturnedMovie = value;
+                }
+            }
+        }
         #endregion
 
         public SimpleCommand SearchMovie { get; private set; }
@@ -84,12 +94,21 @@ namespace MediaTracker.ViewModel
         private async void ExecuteSearchMovie(object paramater)
         {
             Movies = await bodb.GetRequest(Search);
+            if (Movies.Count == 0)
+                MessageBox.Show("No Movies Found!", "Movie Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void ExecuteReturnMovie(object parameter)
+        private async void ExecuteReturnMovie(object parameter)
         {
+            ReturnedMovie = new Movie(SelectedMovie);
+
+            string releaseDate = await bodb.GetReleaseDateRequest(SelectedMovie.Id);
+
+            ReturnedMovie.ReleaseDate = (releaseDate != "" ? DateTime.Parse(releaseDate) : DateTime.MinValue);
+
             Window window = (Window)parameter;
-            window.DialogResult = true;
+            if (window != null)
+                window.DialogResult = true;
         }
     }
 }

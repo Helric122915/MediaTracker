@@ -20,7 +20,16 @@ namespace MediaTracker.Helper
         //[JsonProperty("release-date")]
         //public string ReleaseDate { get; set; }
         [JsonProperty("director")]
-        public string Director { get; set; }
+        private string mDirector = "N/A";
+        public string Director
+        {
+            get { return mDirector; }
+            set
+            {
+                if (mDirector != value && value != "")
+                    mDirector = value;
+            }
+        }
         [JsonProperty("starring")]
         public string Starring { get; set; }
         [JsonProperty("genre")]

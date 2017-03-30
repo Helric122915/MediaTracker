@@ -1,16 +1,9 @@
 ﻿using MediaTracker.API;
 using MediaTracker.Helper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Web;
-using System.Web.Script.Serialization;
-using unirest_net.http;
-using System.Windows.Input;
 using System.Windows;
+using System;
+using MediaTracker.Classes;
 
 namespace MediaTracker.ViewModel
 {
@@ -67,6 +60,24 @@ namespace MediaTracker.ViewModel
                 }
             }
         }
+
+        private VideoGame mReturnedVideoGame;
+        public VideoGame ReturnedVideoGame
+        {
+            get
+            {
+                if (mReturnedVideoGame == null)
+                    return null;
+                return mReturnedVideoGame;
+            }
+            set
+            {
+                if (mReturnedVideoGame != value)
+                {
+                    mReturnedVideoGame = value;
+                }
+            }
+        }
         #endregion
 
         public SimpleCommand SearchVideoGame { get; private set; }
@@ -83,13 +94,30 @@ namespace MediaTracker.ViewModel
 
         private async void ExecuteSearchVideoGame(object paramater)
         {
-            VideoGames = await igdb.GetRequest(Search);
+            VideoGames = await igdb.GetVideoGameRequest(Search);
+            if (VideoGames.Count == 0)
+                MessageBox.Show("No Video Games Found!", "Video Game Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void ExecuteReturnVideoGame(object parameter)
+        private async void ExecuteReturnVideoGame(object parameter)
         {
+            ReturnedVideoGame = new VideoGame(SelectedVideoGame);
+            ReturnedVideoGame.Publisher = (SelectedVideoGame.publishers != null ? await igdb.GetCompanyRequest(string.Join(",", SelectedVideoGame.publishers.ToArray())) : "");
+            ReturnedVideoGame.Studio = (SelectedVideoGame.developers != null ? await igdb.GetCompanyRequest(string.Join(",", SelectedVideoGame.developers.ToArray())) : "");
+            ReturnedVideoGame.Genre = (SelectedVideoGame.genres != null ? await igdb.GetGenreRequest(string.Join(",", SelectedVideoGame.genres.ToArray())) : "");
+
+            try
+            {
+                ReturnedVideoGame.ReleaseDate = DateTime.Parse(SelectedVideoGame.release_dates.Count > 0 ? SelectedVideoGame.release_dates[0].human : "");
+            }
+            catch
+            {
+                ReturnedVideoGame.ReleaseDate = new DateTime();
+            }
+
             Window window = (Window)parameter;
-            window.DialogResult = true;
+            if (window != null)
+                window.DialogResult = true;
         }
     }
 }

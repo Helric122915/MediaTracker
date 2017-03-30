@@ -5,10 +5,9 @@ namespace MediaTracker.Classes
 {
     public class VideoGame : Media
     {
-        public ESRB ESRB;
-        public string Platform;
-        public string Publisher;
-        public string Studio;
+        public ESRB ESRB { get; set; }
+        public string Publisher { get; set; }
+        public string Studio { get; set; }
 
         public VideoGame() { }
 
@@ -17,15 +16,13 @@ namespace MediaTracker.Classes
             Title = game.name;
             PersonalRating = 0;
             DateAdded = DateTime.Now;
-            Genre = string.Join(",", game.genres.ToArray());
+            Genre = (game.genres != null ? string.Join(",", game.genres.ToArray()) : "");
             ReleaseDate = new DateTime();
             TimesUsed = 0;
             DateLastUsed = DateTime.Now;
-            MetacriticScore = 0;
             ESRB = (game.esrb != null ? (ESRB)game.esrb.rating : ESRB.None);
-            Platform = "";
-            Publisher = string.Join(",", game.publishers.ToArray());
-            Studio = string.Join(",", game.developers.ToArray());
+            Publisher = (game.publishers != null ? string.Join(",", game.publishers.ToArray()) : "");
+            Studio = (game.developers != null ? string.Join(",", game.developers.ToArray()) : "");
         }
     }
 }

@@ -48,7 +48,16 @@ namespace MediaTracker.Helper
 
     public class Esrb
     {
-        public int rating { get; set; }
+        private int mRating = 0;
+        public int rating
+        {
+            get { return mRating; }
+            set
+            {
+                if (mRating != value)
+                    mRating = value;
+            }
+        }
         public string synopsis { get; set; }
     }
 
@@ -89,7 +98,16 @@ namespace MediaTracker.Helper
         public List<Screenshot> screenshots { get; set; }
         public List<Video> videos { get; set; }
         public Cover cover { get; set; }
-        public Esrb esrb { get; set; }
+        private Esrb mEsrb;
+        public Esrb esrb
+        {
+            get { return (mEsrb != null ? mEsrb : new Esrb()); }
+            set
+            {
+                if (mEsrb != value)
+                    mEsrb = value;
+            }
+        }
         public Pegi pegi { get; set; }
         public double? rating { get; set; }
         public double? aggregated_rating { get; set; }

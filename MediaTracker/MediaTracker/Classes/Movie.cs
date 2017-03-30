@@ -5,11 +5,11 @@ namespace MediaTracker.Classes
 {
     public class Movie : Media
     {
-        public string MPAA;
-        public string Studio;
-        public string IMDB;
-        public string Director;
-        public string Starring;
+        public MPAA MPAA { get; set; }
+        public string Studio { get; set; }
+        public string IMDB { get; set; }
+        public string Director { get; set; }
+        public string Starring { get; set; }
 
         public Movie() { }
 
@@ -22,8 +22,9 @@ namespace MediaTracker.Classes
             ReleaseDate = new DateTime();
             TimesUsed = 0;
             DateLastUsed = DateTime.Now;
-            MetacriticScore = 0;
-            MPAA = movie.Mpaa;
+            MPAA temp = MPAA.None;
+            Enum.TryParse<MPAA>(movie.Mpaa, out temp);
+            MPAA = temp;
             Studio = movie.Studio;
             IMDB = movie.Imdb;
             Director = movie.Director;

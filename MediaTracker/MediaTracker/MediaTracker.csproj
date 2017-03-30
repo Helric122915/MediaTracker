@@ -73,10 +73,26 @@
     <Compile Include="Classes\Movie.cs" />
     <Compile Include="Classes\Music.cs" />
     <Compile Include="Classes\VideoGame.cs" />
+    <Compile Include="Converter\EnumToHeightConverter.cs" />
+    <Compile Include="Converter\EsrbToSelectedIndex.cs" />
+    <Compile Include="Converter\EnumToVisibilityConverter.cs" />
+    <Compile Include="Converter\IntToEnumTextConverter.cs" />
+    <Compile Include="Converter\MovieSortToSelectedIndex.cs" />
+    <Compile Include="Converter\MpaaToSelectedIndex.cs" />
+    <Compile Include="Converter\RatingToStarColorConverter.cs" />
+    <Compile Include="Converter\VideoGameSortToSelectedIndex.cs" />
+    <Compile Include="Helper\BODBReleaseDate.cs" />
+    <Compile Include="Helper\IGDBCompany.cs" />
+    <Compile Include="Helper\IGDBGenre.cs" />
+    <Compile Include="Helper\IGDBPlatform.cs" />
+    <Compile Include="Helper\IGDBReleaseDate.cs" />
+    <Compile Include="Helper\ObjectCopier.cs" />
     <Compile Include="Helper\ReadXML.cs" />
     <Compile Include="Helper\WriteXML.cs" />
     <Compile Include="ViewModel\AddMovieViewModel.cs" />
     <Compile Include="ViewModel\AddVideoGameViewModel.cs" />
+    <Compile Include="ViewModel\EditMovieViewModel.cs" />
+    <Compile Include="ViewModel\EditVideoGameViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddMovieWindow.xaml.cs">
@@ -84,6 +100,12 @@
     </Compile>
     <Compile Include="View\AddVideoGameWindow.xaml.cs">
       <DependentUpon>AddVideoGameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditMovieWindow.xaml.cs">
+      <DependentUpon>EditMovieWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditVideoGameWindow.xaml.cs">
+      <DependentUpon>EditVideoGameWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -94,8 +116,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converter\BaseConverter.cs" />
-    <Compile Include="Converter\EmptyStringToHeightConverter.cs" />
-    <Compile Include="Converter\EmptyStringToVisibilityConverter.cs" />
     <Compile Include="Converter\NullToDisabledConverter.cs" />
     <Compile Include="Helper\BoxOfficeMovie.cs" />
     <Compile Include="Helper\Enumerations.cs" />
@@ -113,6 +133,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddVideoGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditMovieWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditVideoGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
