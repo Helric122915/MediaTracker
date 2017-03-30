@@ -26,11 +26,6 @@
                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="LightBlue"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
                 </Style.Resources>
-                <Style.Triggers>
-                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                        <Setter Property="IsSelected" Value="True"/>
-                    </Trigger>
-                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -93,11 +88,6 @@
                             <TextBlock Text="{Binding esrb.rating, Converter={StaticResource IntToEnumTextConverter}}"/>
                         </StackPanel>
                     </StackPanel>
-                    <!--<ListBoxItem  Margin="0,2,0,2">
-                        <TextBlock Text="{Binding name}"/>
-                        
-                        
-                    </ListBoxItem>-->
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

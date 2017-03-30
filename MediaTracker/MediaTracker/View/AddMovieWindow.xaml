@@ -23,11 +23,6 @@
                     <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="LightBlue"/>
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
                 </Style.Resources>
-                <Style.Triggers>
-                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                        <Setter Property="IsSelected" Value="True"/>
-                    </Trigger>
-                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -84,12 +79,12 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical" Margin="0,2,0,2">
-                        <TextBlock Text="{Binding Title}"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Director: "/>
-                            <TextBlock Text="{Binding Director}"/>
+                            <TextBlock Text="{Binding Title}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Director: "/>
+                                <TextBlock Text="{Binding Director}"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
