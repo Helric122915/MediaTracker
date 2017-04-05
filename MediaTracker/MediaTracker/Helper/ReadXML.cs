@@ -72,7 +72,7 @@ namespace MediaTracker.Helper
 
             textReader.ReadToDescendant("VideoGameList");
 
-            while (textReader.ReadToFollowing("Movie"))
+            while (textReader.ReadToFollowing("VideoGame"))
             {
                 VideoGame tempVideoGame = new VideoGame();
 
@@ -115,7 +115,57 @@ namespace MediaTracker.Helper
 
         public List<Music> ReadMusic(string FilePath)
         {
-            return new List<Music>();
+            XmlTextReader textReader = new XmlTextReader(FilePath);
+            textReader.WhitespaceHandling = WhitespaceHandling.None;
+            List<Music> albumList = new List<Music>();
+
+            textReader.ReadToDescendant("AlbumsList");
+
+            while (textReader.ReadToFollowing("Album"))
+            {
+                Music tempAlbum = new Music();
+
+                textReader.ReadToDescendant("Title");
+                tempAlbum.Title = textReader.GetAttribute("name");
+
+                textReader.ReadToNextSibling("Artist");
+                tempAlbum.Artist = textReader.GetAttribute("name");
+
+                textReader.ReadToNextSibling("PersonalRating");
+                tempAlbum.PersonalRating = ushort.Parse(textReader.GetAttribute("name"));
+
+                textReader.ReadToNextSibling("DateAdded");
+                tempAlbum.DateAdded = DateTime.Parse(textReader.GetAttribute("name"));
+
+                textReader.ReadToNextSibling("Genre");
+                tempAlbum.Genre = textReader.GetAttribute("name");
+
+                textReader.ReadToNextSibling("ReleaseDate");
+                tempAlbum.ReleaseDate = DateTime.Parse(textReader.GetAttribute("name"));
+
+                textReader.ReadToNextSibling("TimesUsed");
+                tempAlbum.TimesUsed = ushort.Parse(textReader.GetAttribute("name"));
+
+                textReader.ReadToNextSibling("DateLastUsed");
+                tempAlbum.DateLastUsed = DateTime.Parse(textReader.GetAttribute("name"));
+
+                textReader.ReadToNextSibling("Length");
+                tempAlbum.Length = textReader.GetAttribute("name");
+
+                textReader.ReadToNextSibling("TrackList");
+
+                textReader.ReadToDescendant("Track");
+
+                do
+                {
+                    tempAlbum.TrackList.Add(textReader.GetAttribute("name"));
+                } while (textReader.ReadToNextSibling("Track"));
+
+                albumList.Add(tempAlbum);
+            }
+            textReader.Close();
+
+            return albumList;
         }
     }
 }

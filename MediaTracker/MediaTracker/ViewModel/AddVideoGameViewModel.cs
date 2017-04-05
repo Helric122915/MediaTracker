@@ -94,9 +94,18 @@ namespace MediaTracker.ViewModel
 
         private async void ExecuteSearchVideoGame(object paramater)
         {
-            VideoGames = await igdb.GetVideoGameRequest(Search);
-            if (VideoGames.Count == 0)
-                MessageBox.Show("No Video Games Found!", "Video Game Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+
+            if (Search != "")
+            {
+                VideoGames = await igdb.GetVideoGameRequest(Search);
+                if (VideoGames.Count == 0)
+                    MessageBox.Show("No Video Games Found!", "Video Game Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+                MessageBox.Show("Please enter a search into one of the fields.", "Video Game Search Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default;
         }
 
         private async void ExecuteReturnVideoGame(object parameter)

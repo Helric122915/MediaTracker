@@ -6,31 +6,37 @@
     xmlns:mstns="http://tempuri.org/MusicSchema.xsd"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
-  <xs:element name="Music">
+
+  <xs:element name="TrackList">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Track" type="xs:string"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Album">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="Title" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Artist" type="xs:string" minOccurs="1" maxOccurs ="1"/>
         <xs:element name="PersonalRating" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="DateAdded" type="xs:date" minOccurs="1" maxOccurs="1"/>
         <xs:element name="Genre" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="ReleaseDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
         <xs:element name="TimesUsed" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
         <xs:element name="DateLastUsed" type="xs:date" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="MetacriticScore" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="RIAA" type="xs:string" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="Artist" type="xs:string" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="Label" type="xs:string" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="Length" type="xs:time" minOccurs="1" maxOccurs="1"/> <!--Might need to be an int instead of time?-->
+        <xs:element name="Length" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="TrackList" minOccurs="1" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="MusicList">
+  <xs:element name="AlbumList">
     <xs:complexType>
       <xs:all>
-        <xs:element ref="Music" minOccurs="1"/>
+        <xs:element ref="Album" minOccurs="1"/>
       </xs:all>
-
-      <xs:attribute name="Title" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>

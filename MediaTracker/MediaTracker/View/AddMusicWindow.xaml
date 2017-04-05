@@ -1,15 +1,12 @@
-﻿<Window x:Class="MediaTracker.View.AddVideoGameWindow"
+﻿<Window x:Class="MediaTracker.View.AddMusicWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:converter="clr-namespace:MediaTracker.Converter"
-        Title="Add a Video Game" Height="auto" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Add an Album" Height="auto" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <ResourceDictionary>
-            <converter:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter"/>
-            <converter:EnumToHeightConverter x:Key="EnumToHeightConverter"/>
             <converter:NullToDiabledConverter x:Key="NullToDiabledConverter"/>
-            <converter:IntToEnumTextConverter x:Key="IntToEnumTextConverter"/>
 
             <AlternationConverter x:Key="BackgroundConverter">
                 <SolidColorBrush>White</SolidColorBrush>
@@ -49,7 +46,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-            <TextBox MinWidth="150" Width="Auto" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox MinWidth="125" Width="Auto" Text="{Binding SearchAlbum, UpdateSourceTrigger=PropertyChanged}">
                 <!--http://stackoverflow.com/questions/7425618/how-can-i-add-a-hint-text-to-wpf-textbox
                     By User: sellmeadog-->
                 <TextBox.Style>
@@ -57,7 +54,7 @@
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
-                                    <Label Content="Enter Video Game Title" Foreground="LightGray" />
+                                    <Label Content="Enter an Album Title" Foreground="LightGray" />
                                 </VisualBrush.Visual>
                             </VisualBrush>
                         </Style.Resources>
@@ -75,23 +72,52 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <Button Content="Search" Margin="10,0,0,0" Command="{Binding SearchVideoGame}" IsDefault="True"/>
+
+            <Label Margin="10,0,10,0" Content="or"/>
+
+            <TextBox MinWidth="125" Width="Auto" Text="{Binding SearchArtist, UpdateSourceTrigger=PropertyChanged}">
+                <!--http://stackoverflow.com/questions/7425618/how-can-i-add-a-hint-text-to-wpf-textbox
+                    By User: sellmeadog-->
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Enter an Arist Name" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Content="Search" Margin="10,0,0,0" Command="{Binding SearchMusic}" IsDefault="True"/>
         </StackPanel>
 
-        <ListBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" AlternationCount="2" ItemsSource="{Binding VideoGames}" SelectedItem="{Binding SelectedVideoGame, Mode=TwoWay}" ItemContainerStyle="{StaticResource alternateRowColorBinding}">
+        <ListBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Albums}" SelectedItem="{Binding SelectedAlbum, Mode=TwoWay}" AlternationCount="2" ItemContainerStyle="{StaticResource alternateRowColorBinding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical" Margin="0,2,0,2">
-                        <TextBlock Text="{Binding name}"/>
+                        <TextBlock Text="{Binding title}"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="ESRB Rating: "/>
-                            <TextBlock Text="{Binding esrb.rating, Converter={StaticResource IntToEnumTextConverter}}"/>
+                            <TextBlock Text="Artist: "/>
+                            <TextBlock Text="{Binding artist_name}"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button MinHeight="20" MinWidth="20" Content="Select Video Game" Grid.Row="5" Grid.Column="3" IsEnabled="{Binding SelectedVideoGame, Converter={StaticResource NullToDiabledConverter}}" Command="{Binding ReturnVideoGame}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+        <Button MinHeight="20" MinWidth="20" Content="Select Album" Grid.Row="5" Grid.Column="3" IsEnabled="{Binding SelectedAlbum, Converter={StaticResource NullToDiabledConverter}}" Command="{Binding ReturnMusic}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
     </Grid>
 </Window>

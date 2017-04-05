@@ -21,9 +21,9 @@ namespace MediaTracker.Classes
             Genre = movie.Genre;
             ReleaseDate = new DateTime();
             TimesUsed = 0;
-            DateLastUsed = DateTime.Now;
+            DateLastUsed = new DateTime();
             MPAA temp = MPAA.None;
-            Enum.TryParse<MPAA>(movie.Mpaa, out temp);
+            Enum.TryParse(movie.Mpaa, out temp);
             MPAA = temp;
             Studio = movie.Studio;
             IMDB = movie.Imdb;

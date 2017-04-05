@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MediaTracker.View"
         xmlns:converter="clr-namespace:MediaTracker.Converter"
         mc:Ignorable="d"
-        Title="EditMovieWindow" Height="345" Width="335" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Edit a Movie" Height="345" Width="335" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <ResourceDictionary>

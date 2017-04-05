@@ -16,7 +16,6 @@
         <xs:element name="ReleaseDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
         <xs:element name="TimesUsed" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
         <xs:element name="DateLastUsed" type="xs:date" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="MetacriticScore" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
         <xs:element name="MPAA" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="Studio" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="IMDB" type="xs:string" minOccurs="1" maxOccurs="1"/>

@@ -18,6 +18,8 @@ namespace MediaTracker.Helper
         Title,
         PersonalRating,
         Director,
+        LeastRecentlyUsed,
+        MostRecentlyUsed,
         None
     }
 
@@ -26,13 +28,17 @@ namespace MediaTracker.Helper
         Title,
         PersonalRating,
         ESRB,
+        LeastRecentlyUsed,
+        MostRecentlyUsed,
         None
     }
 
-    public enum AlbumSort
+    public enum MusicSort
     {
         Title,
         PersonalRating,
+        LeastRecentlyUsed,
+        MostRecentlyUsed,
         None
     }
 

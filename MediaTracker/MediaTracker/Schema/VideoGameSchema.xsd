@@ -9,13 +9,13 @@
   <xs:element name="VideoGame">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="Title" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="PersonalRating" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="DateAdded" type="xs:date" minOccurs="1" maxOccurs="1"/>
         <xs:element name="Genre" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="ReleaseDate" type="xs:date" minOccurs="1" maxOccurs="1"/>
         <xs:element name="TimesUsed" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
         <xs:element name="DateLastUsed" type="xs:date" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="MetacriticScore" type="xs:unsignedShort" minOccurs="1" maxOccurs="1"/>
         <xs:element name="ESRB" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="Platform" type="xs:string" minOccurs="1" maxOccurs="1"/>
         <xs:element name="Publisher" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -29,8 +29,6 @@
       <xs:all>
         <xs:element ref="VideoGame" minOccurs="1"/>
       </xs:all>
-
-      <xs:attribute name="Title" type="xs:string" use="required"/>
     </xs:complexType>
   </xs:element>
 </xs:schema>

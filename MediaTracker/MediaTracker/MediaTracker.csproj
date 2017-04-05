@@ -68,7 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="API\BoxOfficeDB.cs" />
     <Compile Include="API\IGDB.cs" />
-    <Compile Include="API\OMDb.cs" />
+    <Compile Include="API\MusicGraph.cs" />
     <Compile Include="Classes\Media.cs" />
     <Compile Include="Classes\Movie.cs" />
     <Compile Include="Classes\Music.cs" />
@@ -79,6 +79,7 @@
     <Compile Include="Converter\IntToEnumTextConverter.cs" />
     <Compile Include="Converter\MovieSortToSelectedIndex.cs" />
     <Compile Include="Converter\MpaaToSelectedIndex.cs" />
+    <Compile Include="Converter\MusicSortToSelectedIndex.cs" />
     <Compile Include="Converter\RatingToStarColorConverter.cs" />
     <Compile Include="Converter\VideoGameSortToSelectedIndex.cs" />
     <Compile Include="Helper\BODBReleaseDate.cs" />
@@ -86,23 +87,34 @@
     <Compile Include="Helper\IGDBGenre.cs" />
     <Compile Include="Helper\IGDBPlatform.cs" />
     <Compile Include="Helper\IGDBReleaseDate.cs" />
+    <Compile Include="Helper\MusicGraphMusic.cs" />
+    <Compile Include="Helper\MusicGraphTracks.cs" />
     <Compile Include="Helper\ObjectCopier.cs" />
     <Compile Include="Helper\ReadXML.cs" />
+    <Compile Include="Helper\SchemaValidation.cs" />
     <Compile Include="Helper\WriteXML.cs" />
     <Compile Include="ViewModel\AddMovieViewModel.cs" />
+    <Compile Include="ViewModel\AddMusicViewModel.cs" />
     <Compile Include="ViewModel\AddVideoGameViewModel.cs" />
     <Compile Include="ViewModel\EditMovieViewModel.cs" />
+    <Compile Include="ViewModel\EditMusicViewModel.cs" />
     <Compile Include="ViewModel\EditVideoGameViewModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AddMovieWindow.xaml.cs">
       <DependentUpon>AddMovieWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddMusicWindow.xaml.cs">
+      <DependentUpon>AddMusicWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddVideoGameWindow.xaml.cs">
       <DependentUpon>AddVideoGameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditMovieWindow.xaml.cs">
       <DependentUpon>EditMovieWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditMusicWindow.xaml.cs">
+      <DependentUpon>EditMusicWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditVideoGameWindow.xaml.cs">
       <DependentUpon>EditVideoGameWindow.xaml</DependentUpon>
@@ -132,11 +144,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddMusicWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddVideoGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditMovieWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditMusicWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,15 +189,15 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Schema\MovieSchema.xsd">
+    <EmbeddedResource Include="Schema\MovieSchema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\MusicSchema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\MusicSchema.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Schema\VideoGameSchema.xsd">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schema\VideoGameSchema.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

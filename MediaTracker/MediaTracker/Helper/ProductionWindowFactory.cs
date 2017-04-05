@@ -10,6 +10,8 @@ namespace MediaTracker.Helper
         bool EditMovieWindow(Movie movie, Log log);
         VideoGame CreateVideoGameWindow(Log log);
         bool EditVideoGameWindow(VideoGame videoGame, Log log);
+        Music CreateMusicWindow(Log log);
+        bool EditMusicWindow(Music music, Log log);
     }
 
     public class ProductionWindowFactory : IWindowFactory
@@ -58,7 +60,29 @@ namespace MediaTracker.Helper
             EditVideoGameWindow window = new EditVideoGameWindow { DataContext = viewModel };
 
             return (bool)window.ShowDialog();
+        }
 
+        public Music CreateMusicWindow(Log log)
+        {
+            AddMusicViewModel viewModel = new AddMusicViewModel(log);
+
+            AddMusicWindow window = new AddMusicWindow { DataContext = viewModel };
+
+            bool ReturnResult = (bool)window.ShowDialog();
+
+            if (ReturnResult)
+                return viewModel.ReturnedMusic;
+            else
+                return null;
+        }
+
+        public bool EditMusicWindow(Music music, Log log)
+        {
+            EditMusicViewModel viewModel = new EditMusicViewModel(music, log);
+
+            EditMusicWindow window = new EditMusicWindow { DataContext = viewModel };
+
+            return (bool)window.ShowDialog();
         }
     }
 }

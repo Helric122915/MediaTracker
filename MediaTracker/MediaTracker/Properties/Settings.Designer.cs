@@ -22,5 +22,41 @@ namespace MediaTracker.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Title")]
+        public string MovieSort {
+            get {
+                return ((string)(this["MovieSort"]));
+            }
+            set {
+                this["MovieSort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Title")]
+        public string VideoGameSort {
+            get {
+                return ((string)(this["VideoGameSort"]));
+            }
+            set {
+                this["VideoGameSort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Title")]
+        public string AlbumSort {
+            get {
+                return ((string)(this["AlbumSort"]));
+            }
+            set {
+                this["AlbumSort"] = value;
+            }
+        }
     }
 }

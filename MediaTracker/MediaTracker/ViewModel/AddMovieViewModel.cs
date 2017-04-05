@@ -93,9 +93,18 @@ namespace MediaTracker.ViewModel
 
         private async void ExecuteSearchMovie(object paramater)
         {
-            Movies = await bodb.GetRequest(Search);
-            if (Movies.Count == 0)
-                MessageBox.Show("No Movies Found!", "Movie Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+
+            if (Search != "")
+            {
+                Movies = await bodb.GetRequest(Search);
+                if (Movies.Count == 0)
+                    MessageBox.Show("No Movies Found!", "Movie Search Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+                MessageBox.Show("Please enter a search into one of the fields.", "Movie Search Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Default;
         }
 
         private async void ExecuteReturnMovie(object parameter)

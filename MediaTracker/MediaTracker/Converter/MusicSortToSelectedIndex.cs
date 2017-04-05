@@ -1,13 +1,14 @@
-﻿using System;
+﻿using MediaTracker.Helper;
+using System;
 using System.Windows.Data;
 
 namespace MediaTracker.Converter
 {
-    [ValueConversion(typeof(ushort), typeof(bool))]
-    public class RatingToStarColorConverter : BaseConverter, IValueConverter
+    [ValueConversion(typeof(MusicSort), typeof(int))]
+    public class MusicSortToSelectedIndex : BaseConverter, IValueConverter
     {
         /// <summary>
-        /// If the value is greater than or equal to the parameter then return true, otherwise false.
+        /// Returns MusicSort as int.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>
@@ -16,19 +17,12 @@ namespace MediaTracker.Converter
         /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            ushort val = (ushort)value;
-            ushort param = ushort.Parse((string)parameter);
-
-            if (val >= param)
-                return true;
-            else
-                return false;
-
+            return (int)((MusicSort)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return null;
+            return (MusicSort)((int)value);
         }
     }
 }

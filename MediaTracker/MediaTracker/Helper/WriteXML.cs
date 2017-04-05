@@ -109,7 +109,7 @@ namespace MediaTracker.Helper
 
             foreach (VideoGame game in videoGames)
             {
-                textWriter.WriteStartElement("Movie");
+                textWriter.WriteStartElement("VideoGame");
 
                 textWriter.WriteStartElement("Title");
                 textWriter.WriteAttributeString("name", game.Title);
@@ -163,10 +163,76 @@ namespace MediaTracker.Helper
 
         public void WriteMusic(List<Music> musicCollection, string FilePath)
         {
-            foreach (Music music in musicCollection)
-            {
+            textWriter = new XmlTextWriter(FilePath, UTF8);
 
+            textWriter.WriteStartDocument();
+
+            textWriter.Formatting = Formatting.Indented;
+            textWriter.Indentation = 4;
+            textWriter.QuoteChar = '\'';
+
+            textWriter.WriteComment("MediaTracker");
+            textWriter.WriteComment("Generated: " + DateTime.Now.ToString());
+
+            textWriter.WriteStartElement("AlbumsList");
+
+            foreach (Music album in musicCollection)
+            {
+                textWriter.WriteStartElement("Album");
+
+                textWriter.WriteStartElement("Title");
+                textWriter.WriteAttributeString("name", album.Title);
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("Artist");
+                textWriter.WriteAttributeString("name", album.Artist);
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("PersonalRating");
+                textWriter.WriteAttributeString("name", album.PersonalRating.ToString());
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("DateAdded");
+                textWriter.WriteAttributeString("name", album.DateAdded.ToString());
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("Genre");
+                textWriter.WriteAttributeString("name", album.Genre);
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("ReleaseDate");
+                textWriter.WriteAttributeString("name", album.ReleaseDate.ToString());
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("TimesUsed");
+                textWriter.WriteAttributeString("name", album.TimesUsed.ToString());
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("DateLastUsed");
+                textWriter.WriteAttributeString("name", album.DateLastUsed.ToString());
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("Length");
+                textWriter.WriteAttributeString("name", album.Length);
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("TrackList");
+                foreach (string track in album.TrackList)
+                {
+                    textWriter.WriteStartElement("Track");
+                    textWriter.WriteAttributeString("name", track);
+                    textWriter.WriteEndElement();
+                }
+                textWriter.WriteEndElement();
+
+                textWriter.WriteEndElement();
             }
+
+            textWriter.WriteEndElement();
+
+            textWriter.WriteEndDocument();
+
+            textWriter.Close();
         }
     }
 }
