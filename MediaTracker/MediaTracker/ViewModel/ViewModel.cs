@@ -418,7 +418,7 @@ namespace MediaTracker.ViewModel
 
             // Sets the selected movie to the index of the max ranked movie.
             DialogResult result = DialogResult.None;
-            while (result != DialogResult.Yes && videoGameRank.Max() != 0 && result == DialogResult.Cancel)
+            while (result != DialogResult.Yes && videoGameRank.Max() != 0 && result != DialogResult.Cancel)
             {
                 SelectedVideoGame = VideoGameList[videoGameRank.IndexOf(videoGameRank.Max())];
                 result = MessageBox.Show("Would you like to play: " + SelectedVideoGame.Title + "?", "Random Video Game", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -629,16 +629,9 @@ namespace MediaTracker.ViewModel
         {
             // Sweep through each list of media and write all of the files to xml for persistant storage.
             WriteXML writeXML = new WriteXML();
-            //SchemaValidation validation = new SchemaValidation(log);
-
             writeXML.WriteMovie(MovieList.ToList(), Directory.GetCurrentDirectory() + @"\MovieList.xml");
-            //validation.validate(Directory.GetCurrentDirectory() + @"\MovieList.xml", MediaType.Movie, true);
-
             writeXML.WriteVideoGame(VideoGameList.ToList(), Directory.GetCurrentDirectory() + @"\VideoGameList.xml");
-            //validation.validate(Directory.GetCurrentDirectory() + @"\VideoGameList.xml", MediaType.VideoGame, true);
-
             writeXML.WriteMusic(MusicList.ToList(), Directory.GetCurrentDirectory() + @"\AlbumList.xml");
-            //validation.validate(Directory.GetCurrentDirectory() + @"\AlbumList.xml", MediaType.Music, true);
 
             // Store the Sort settings.
             Properties.Settings.Default.MovieSort = MovieSorting.ToString();
